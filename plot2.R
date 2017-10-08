@@ -1,0 +1,7 @@
+data<-read.table("household_power_consumption.txt", header=TRUE, sep=";", stringsAsFactors=FALSE, dec=".")
+subset<-filter(data,Date=="1/2/2007" | Date=="2/2/2007")
+xaxis <- dmy_hms(paste(subset$Date, subset$Time, sep=" "))
+subset$Global_active_power<-as.numeric(subset$Global_active_power)
+png("plot2.png", width=480, height=480)
+plot(xaxis,subset$Global_active_power,type="l",xlab="",ylab = "Global Active Power (kilowatts)")
+dev.off()
